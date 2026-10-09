@@ -12,14 +12,14 @@ Here is the raw data, methodology, and variance analysis.
 
 We constructed a dataset of 25 anonymized technical interview transcripts spanning three core roles: Python Backend Engineer, DevOps/SRE, and AI/ML Engineer. 
 
-*   **The Human Panel:** Three experienced Staff Engineers graded all 100 transcripts. They were given a standardized 10-point rubric assessing four dimensions: Technical Depth, Problem Solving, Communication, and System Design. Their scores were averaged to create the "Human Baseline."
+*   **The Human Panel:** Three experienced Staff Engineers graded all 25 transcripts. They were given a standardized 10-point rubric assessing four dimensions: Technical Depth, Problem Solving, Communication, and System Design. Their scores were averaged to create the "Human Baseline."
 *   **The AI Evaluator:** The exact same raw transcripts were fed into Kovi’s **Isolated Evaluator Node**. Because Kovi uses a LangGraph supervisor-worker architecture, the evaluator model is completely decoupled from the conversational voice model. It is instructed purely to map transcript evidence to the exact 10-point rubric.
 
 Both groups graded blindly, unaware of each other's assessments.
 
 ### Benchmark Results: Score Variance
 
-Overall, Kovi demonstrated a **94.2% correlation** with the Human Baseline across all 100 interviews. 
+Overall, Kovi demonstrated a **94.2% correlation** with the Human Baseline across all 25 interviews. 
 
 | Evaluation Dimension | Human Average (out of 10) | Kovi Average (out of 10) | Average Variance (Δ) |
 | :--- | :--- | :--- | :--- |
@@ -40,7 +40,7 @@ In the Communication dimension, humans consistently scored candidates higher (8.
 System Design is historically the hardest area for standard LLMs to grade because answers are open-ended. However, because Kovi’s LangGraph architecture injects dynamic, highly specific follow-up questions during the interview to test boundary conditions (e.g., "How does this FastAPI endpoint handle 10,000 concurrent requests?"), the resulting transcript contains concrete evidence. Consequently, Kovi and the human panel aligned perfectly (7.1 vs 7.1).
 
 **3. Zero instances of score hallucination.**
-Across all 100 evaluations, there were zero instances of Kovi referencing a technology or framework that the candidate did not explicitly mention. The Isolated Evaluator Node successfully prevented the AI from "filling in the blanks," a common failure point in standard LLM wrappers.
+Across all 25 evaluations, there were zero instances of Kovi referencing a technology or framework that the candidate did not explicitly mention. The Isolated Evaluator Node successfully prevented the AI from "filling in the blanks," a common failure point in standard LLM wrappers.
 
 ### Production Viability 
 
